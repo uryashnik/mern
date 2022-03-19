@@ -14,8 +14,10 @@
   "author": "Uryashnik Vitaliy <uryashnik@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "config": "^3.3.7",
     "express": "^4.17.3",
+    "express-validator": "^6.14.0",
     "mongoose": "^6.2.7"
   },
   "devDependencies": {

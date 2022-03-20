@@ -8,12 +8,6 @@ const AuthPage = () => {
     const message = useMessage();
     const {loading, request, error, clearError} = useHttp()
     const [form, setForm] = useState({email: '', password: ''});
-    useEffect(() => {
-        if (error) {
-            message(error);
-        }
-    }, [error, message, clearError]);
-
     const changeHandler = event => {
         setForm({...form, [event.target.name]: event.target.value})
     }
@@ -29,6 +23,17 @@ const AuthPage = () => {
             auth.login(data.token, data.userId)
         } catch (e) {}
     }
+
+    useEffect(() => {
+        if (error) {
+            message(error);
+        }
+    }, [error, message, clearError]);
+
+    useEffect(() => {
+        window.M.updateTextFields();
+    }, [])
+
     return (
         <div className="row">
             <div className="col s6 offset-s3">

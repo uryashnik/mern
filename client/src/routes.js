@@ -12,7 +12,7 @@ export const useRoutes = isAuthenticated => {
                 <Route path="/links" exact>
                     <LinksPage/>
                 </Route>
-                <Route path="/links" exact>
+                <Route path="/create" exact>
                     <CreatePage/>
                 </Route>
                 <Route path="/details/:id">

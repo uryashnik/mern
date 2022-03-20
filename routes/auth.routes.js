@@ -14,7 +14,6 @@ router.post(
         check('password', 'Минимальная длинна пароля 6 символов').isLength({min: 6}),
     ],
     async (req, res) => {
-        console.log('body: ', req.body)
         try {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
@@ -57,7 +56,9 @@ router.post(
             }
 
             const {email, password} = req.body;
+
             const user = await User.findOne({email});
+
             if (!user) {
                 return res.status(400).json({message: 'Пользователь не найден'});
             }
@@ -66,7 +67,7 @@ router.post(
                 return res.status(400).json({message: 'Неверный пароль, попробуйте снова'})
             }
 
-            const token = jwt(
+            const token = jwt.sign(
                 {userId: user.id},
                 config.get('jwtSecret'),
                 {expiresIn: '1h'}

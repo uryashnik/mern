@@ -15,6 +15,7 @@ export const useHttp = () => {
 
            if(!response.ok){
                throw new Error(data.message || 'Что-то пошло не так');
+               console.log('error responseNotOk')
            }
             setLoading(false);
            return data;
@@ -25,6 +26,8 @@ export const useHttp = () => {
         }
 
     }, []);
+    console.log('hook loading: ', loading);
     const clearError = useCallback(() => setError(null), []);
+    console.log('render hook')
     return {loading, request, error, clearError};
 }
